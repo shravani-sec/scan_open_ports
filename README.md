@@ -1,27 +1,46 @@
-Task 1 of the Cyber Security Internship
+Task: Scan Local Network for Open Ports
 
-## 🔍 Assignment: Check Local Networks for Open Ports
+###  Objective
+To discover open ports on devices in the local network and understand potential risks using Nmap.
 
-### ✅ Goal
-to use Nmap to find open ports on local network devices and comprehend possible threats.
+###  Tools Used
+- Nmap (TCP SYN scan)
+- Operating System: Windows 10
 
-### 🛠️ Utilized Tools: Windows 10 Operating System; Nmap (TCP SYN scan)
+###  Network Target Details
+- Target IP: 10.230.187.74
+- Scan Range: Single IP
+- Scan Type: TCP SYN scan
+- Command Used:
+```bash
+nmap -sS 10.230.187.74
 
-### 🌐 Network Target Information
-10.230.187.74 is the target IP.
-- Scan Range: One IP
-Type of Scan: TCP SYN scan
-- Command Used: ```bash nmap -sS 10.230.187.74
+ Scan Results
 
-📊 Scan Findings
+Port	State	Service
 
-The Port State Service
+135/tcp	open	msrpc
+139/tcp	open	netbios-ssn
+445/tcp	open	microsoft-ds
+5357/tcp	open	wsdapi
+16992/tcp	open	amt-soap-http
+  
 
-135/tcp open msrpc 139/tcp open netbios-ssn 445/tcp open microsoft-ds 5357/tcp open wsdapi 16992/tcp open amt-soap-http
+ Observations
+
+Ports 135, 139, and 445 are commonly used in Windows networking and are often targeted by malware (e.g., WannaCry).
+
+Port 5357 is used for Web Services on Devices (WS-Discovery) — can leak information.
+
+Port 16992 is related to Intel AMT for remote management and should be secured or disabled if not needed.
 
 
-🔐 Perspectives
+ Recommendations
 
-Malware (like WannaCry) frequently targets ports 135, 139, and 445, which are frequently used in Windows networking.
+Disable unused services and ports.
 
-Web Services on Devices (WS-Dis) use port 5357.
+Use firewalls to limit external access to critical ports.
+
+Ensure Intel AMT features are password protected or disabled if not in use.
+
+Regularly audit open ports in the network.
